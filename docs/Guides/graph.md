@@ -4,30 +4,28 @@ sidebar_position: 2
 
 # Introduction to Graph Neural Networks pack
 
-Here are some of the questions that are often asked by new users.
+This guide summarizes the projects included in the Graph Neural Network pack.
 
-## Is there a terminal that I can access?
+Graph Neural Networks operate on data structured as graphs.
 
-Yes, The terminal can be accessed by pressing the plus button on the top left which opens the launcher tab. In the launcher, if you scroll down you will find a button for terminal.
+Use this pack to jumpstart your Graph project development for applications such as social networks, chemical compounds, maps, transportation systems, recommender systems and many more.
 
-![terminal](/img/terminal.jpg)
+This pack includes the following projects related to Graphs and Graph Neural Networks :-
 
-- As you open the terminal, you can check your current directory with `pwd` command which gives you the following output
+## Basics of Graph Theory
 
-```bash
-pwd
-> /home/ec2-user/
+Graph is a combination of vertices (nodes) and lines (edges). Vertex is a point where the lines meet and Edge is the line connecting two vertices.
+
+![terminal](/img/graph.jpg)
+
+Below is an example of visual representation of graphs. This is the character network for Harry Potter and the Goblet of Fire.
+
+![terminal](/img/harry-potter-graph.jpg)
+
+The project (filename "Graph 1- Graph Theory (1)") illustrates the shortest path distance graph between US airports from an airline flights dataset.
 ```
 
-- Your data is under `/home/ec2-user/SageMaker` and you can change directory with `cd` command as follows
-
-```bash
-cd SageMaker
-pwd
-> /home/ec2-user/SageMaker
-```
-
-## I am not able to select multiple files using the upload button. How do I do it?
+## Knowledge Graph
 
 You can use the upload button on the top-right bar of the JupyterLab interface to upload files.
 
@@ -53,7 +51,7 @@ unzip code/my_file.zip
 `unzip` is a general linux command and supports all the options. You can learn more about the `unzip` command by simply googling :)
 :::
 
-## Can I install my own libraries?
+## Intro to Graph and Graph Neural Networks
 
 Yes, you can install new libraries inside the notebook itself. Notebook cells can run all terminal commands by prefixing the command with `!`. So to install a new library with `pip` run the command in the following format inside a code cell in your notebook
 
@@ -61,7 +59,7 @@ Yes, you can install new libraries inside the notebook itself. Notebook cells ca
 !pip install <name of library>
 ```
 
-## How can I run python scripts?
+## Graph Convolution Network
 
 You can run python scripts also with the `!` in the notebook cell. So running a python file would look something like this
 
@@ -69,6 +67,26 @@ You can run python scripts also with the `!` in the notebook cell. So running a 
 !python my_file.py
 ```
 
-## I installed a library in a notebook kernel, but it didn't stay installed when I restarted my instance. What happened?
+## Graph Attention Network
+
+Unfortunately any libraries you installed in your session don't stay installed when the notebook is restarted. It gets cleared.
+
+## Relational GCN
+
+Unfortunately any libraries you installed in your session don't stay installed when the notebook is restarted. It gets cleared.
+
+## Generative Models for Graph
+
+Unfortunately any libraries you installed in your session don't stay installed when the notebook is restarted. It gets cleared.
+
+## Giant Graphs
+
+Unfortunately any libraries you installed in your session don't stay installed when the notebook is restarted. It gets cleared.
+
+## Recommendation Using Graph
+
+Unfortunately any libraries you installed in your session don't stay installed when the notebook is restarted. It gets cleared.
+
+## Graph analysis with Neo4j
 
 Unfortunately any libraries you installed in your session don't stay installed when the notebook is restarted. It gets cleared.
