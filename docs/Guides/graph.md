@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Frequently Asked Questions (FAQ)
+# Introduction to Graph Neural Networks pack
 
 Here are some of the questions that are often asked by new users.
 
