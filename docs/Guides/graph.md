@@ -1,6 +1,8 @@
 ---
 sidebar_position: 2
 ---
+import TOCInline from '@theme/TOCInline';
+
 
 # Introduction to Graph Neural Networks pack
 
@@ -11,6 +13,8 @@ Graph Neural Networks operate on data structured as graphs.
 Use this pack to jumpstart your Graph project development for applications such as social networks, chemical compounds, maps, transportation systems, recommender systems and many more.
 
 This pack includes the following projects related to Graphs and Graph Neural Networks :-
+
+<TOCInline toc={toc} />;
 
 ## Basics of Graph Theory
 
@@ -38,17 +42,13 @@ If you have multiple files and folders, the best way would be to zip your files 
 
 :::note
 If you uploaded your zip in any other location apart from the root of the file explorer then put that path while running the unzip command. Let's say I have a folder called code in my instance and I uploaded the zip file inside the code folder, then the command in terminal to unzip would be
+:::
 
 ```bash
 cd SageMaker
 unzip code/my_file.zip
 ```
 
-:::
-
-:::tip
-`unzip` is a general linux command and supports all the options. You can learn more about the `unzip` command by simply googling :)
-:::
 
 ## Intro to Graph and Graph Neural Networks
 
@@ -68,24 +68,24 @@ You can run python scripts also with the `!` in the notebook cell. So running a 
 
 ## Graph Attention Network
 
-Unfortunately any libraries you installed in your session don't stay installed when the notebook is restarted. It gets cleared.
+TODO
 
 ## Relational GCN
 
-Unfortunately any libraries you installed in your session don't stay installed when the notebook is restarted. It gets cleared.
+TODO
 
 ## Generative Models for Graph
 
-Unfortunately any libraries you installed in your session don't stay installed when the notebook is restarted. It gets cleared.
+TODO
 
 ## Giant Graphs
 
-Unfortunately any libraries you installed in your session don't stay installed when the notebook is restarted. It gets cleared.
+TODO
 
 ## Recommendation Using Graph
 
-Unfortunately any libraries you installed in your session don't stay installed when the notebook is restarted. It gets cleared.
+TODO
 
 ## Graph analysis with Neo4j
 
-Unfortunately any libraries you installed in your session don't stay installed when the notebook is restarted. It gets cleared.
+TODO
