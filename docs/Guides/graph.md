@@ -16,11 +16,11 @@ This pack includes the following projects related to Graphs and Graph Neural Net
 
 Graph is a combination of vertices (nodes) and lines (edges). Vertex is a point where the lines meet and Edge is the line connecting two vertices.
 
-![terminal](/img/graph.png)
+![graph](/img/graph.png)
 
 Below is an example of visual representation of graphs. This is the character network for Harry Potter and the Goblet of Fire.
 
-![terminal](/img/harrr_potter_graph.png)
+![harry_potter_graph](/img/harry_potter_graph.png)
 
 The project (filename "Graph 1- Graph Theory (1)") illustrates the shortest path distance graph between US airports from an airline flights dataset.
 
