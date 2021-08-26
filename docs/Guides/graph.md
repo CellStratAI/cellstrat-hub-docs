@@ -40,7 +40,7 @@ Question and Answering, one of the popular NLP tasks used in dialogue interface,
 
 E.g. KG allows to go beyond just the keyword matching and returns more relevant results like the google search result shown here :
 
-![yoda](/img/yoda.jpg)
+![YODA](/img/YODA.png)
 
 
 ## Intro to Graph and Graph Neural Networks
@@ -51,7 +51,7 @@ Convolutional Networks, Recurrent Networks, Autoencoders etc. work well on the 
 
 But Graphs are unstructured data.
 
-![unstructured](/img/unstructured.jpg)
+![unstructured](/img/unstructured.png)
 
 GNNs are able to model the relationship between the nodes in a graph and produce a numeric representation of it. Social networks, chemical compounds, maps, transportation systems are some of the applications where graph neural networks are used.
 
@@ -69,7 +69,7 @@ Just like normal Convolutional Neural Networks, Graph Convolution Networks (GCN)
 
 Use cases of GCN, include social networks or citation networks, ID Card digitalization etc.
 
-![id_Card](/img/id_card.jpg)
+![id_Card](/img/id_card.png)
 
 ID Card digitalization
 
@@ -81,13 +81,13 @@ Different network configurations in GCN include Spectral and Spatial Convolutio
 
 Graph Attention Network (GAT) is a variant of Graph Convolutional Network that uses the attention mechanism for feature dependent and structure free normalization. This helps in representing the graphs better.
 
-![gat](/img/gat.jpg)
+![gat](/img/gat.png)
 
 In GAT, Additive Attention with Softmax Normalization is used for finding the attention weights (unlike Dot Product Attention of Transformers).
 
 Classification of CORA Dataset (citation network) can be done with the help of Graph Attention Network built with the framework of DGL.
 
-![cora](/img/cora.jpg)
+![cora](/img/cora.png)
 
 ## Relational GCN
 
@@ -95,7 +95,7 @@ Knowledge graphs have triplets in the form of subject, relation and the object. 
 
 Example:
 
-![obama](/img/obama.jpg)
+![obama](/img/obama.png)
 
 Barack Obama – Subject
 Occupation – Relation
@@ -103,11 +103,11 @@ Politician - Object
 
 In a movie recommender system, User-Movie interactions can be marked with edges with user ratings.
 
-![movie](/img/movie.jpg)
+![movie](/img/movie.png)
 
 Relational learning tasks include Entity Classification and Link Predictions.
 
-![link_prediction](/img/link_prediction.jpg)
+![link_prediction](/img/link_prediction.png)
 
 ## Generative Models for Graph
 
