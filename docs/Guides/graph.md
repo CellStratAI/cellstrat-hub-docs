@@ -26,7 +26,7 @@ Graph is a combination of vertices (nodes) and lines (edges). Vertex is a point 
 
 ![graph](/img/graph.png)
 
-_Image credit: "https://en.wikipedia.org/wiki/Vertex_(graph_theory)"_
+_Image credit: https://en.wikipedia.org/_
 
 Below is an example of visual representation of graphs. This is the character network for Harry Potter and the Goblet of Fire.
 
@@ -107,7 +107,7 @@ Classification of CORA Dataset (citation network) can be done with the help of 
 
 ![cora](/img/cora.png)
 
-_Cora dataset_
+_Image credit: Cora dataset_
 
 ## Relational GCN
 
@@ -229,7 +229,7 @@ Graph Analysis can be done in Neo4j Sandbox, cloud based instance of Neo4j serve
 
 ![neo4j_nodes](/img/neo4j_nodes.png)
 
-_https://neo4j.com/developer/cypher/intro-cypher/_
+_Image credit: https://neo4j.com/developer/cypher/intro-cypher/_
 
 A query with Cypher might look like :
 
