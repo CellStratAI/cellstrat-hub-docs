@@ -12,6 +12,8 @@ Graph Neural Networks operate on data structured as graphs.
 
 Use this pack to jumpstart your Graph project development for applications such as social networks, chemical compounds, maps, transportation systems, recommender systems and many more.
 
+![graphs](/img/graphs.png)
+
 This pack includes the following projects related to Graphs and Graph Neural Networks :-
 
 <TOCInline toc={toc} />;
@@ -32,7 +34,7 @@ This project in the Graph pack illustrates the shortest path distance graph betw
 
 Data can be represented as graphs to make it more interpretable. Below figure is an example of knowledge graph which shows several entities like Putin, Russia, KGB, APEC and how they are linked to one another.
 
-![putin](/img/putin.jpg)
+![putin](/img/putin.png)
 
 Question and Answering, one of the popular NLP tasks used in dialogue interface, chatbots and other information retrieval systems can be created with the help of knowledge graphs.
 
@@ -54,6 +56,8 @@ But Graphs are unstructured data.
 GNNs are able to model the relationship between the nodes in a graph and produce a numeric representation of it. Social networks, chemical compounds, maps, transportation systems are some of the applications where graph neural networks are used.
 
 A graph is transformed to an embedding representation, for further information processing. Embeddings may be created with help of a neural network transformation.
+
+![embedding2](/img/embedding2.jpg)
 
 Graph frameworks like DGL (Digital Graph Library) provide in-built functions that make training the graphs easier.
 
@@ -87,11 +91,37 @@ Classification of CORA Dataset (citation network) can be done with the help of 
 
 ## Relational GCN
 
-TODO
+Knowledge graphs have triplets in the form of subject, relation and the object. Thus, we need to consider the edges for the relations
+
+Example:
+
+![obama](/img/obama.jpg)
+
+Barack Obama – Subject
+Occupation – Relation
+Politician - Object
+
+In a movie recommender system, User-Movie interactions can be marked with edges with user ratings.
+
+![movie](/img/movie.jpg)
+
+Relational learning tasks include Entity Classification and Link Predictions.
+
+![link_prediction](/img/link_prediction.jpg)
 
 ## Generative Models for Graph
 
-TODO
+Graph completion by the generative models helps in finding new links useful in knowledge graph completion, social networks, map development, drug and material discovery etc.
+
+![generative](/img/generative.gif)
+
+Deep Generative Models of Graphs (DGMG) helps in structural generation that uses probability driven structure to sequentially add the nodes, edges and finally connect with the destination nodes.
+
+![dgmg](/img/dgmg.png)
+
+Molecular structures like cyclic molecules can be generated and validated with DGMG.
+
+![molecules](/img/molecules.png)
 
 ## Giant Graphs
 
