@@ -16,7 +16,7 @@ Use this pack to jumpstart your Graph project development for applications such 
 
 This pack includes the following projects related to Graphs and Graph Neural Networks :-
 
-<TOCInline toc={toc} />;
+<TOCInline toc={toc} />
 
 ## Basics of Graph Theory
 
@@ -57,7 +57,7 @@ GNNs are able to model the relationship between the nodes in a graph and produce
 
 A graph is transformed to an embedding representation, for further information processing. Embeddings may be created with help of a neural network transformation.
 
-![embedding2](/img/embedding2.jpg)
+![embedding2](/img/embedding2.png)
 
 Graph frameworks like DGL (Digital Graph Library) provide in-built functions that make training the graphs easier.
 
