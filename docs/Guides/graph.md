@@ -6,9 +6,9 @@ import TOCInline from '@theme/TOCInline';
 
 # Introduction to Graph Neural Networks pack
 
-This guide summarizes the projects included in the Graph Neural Network pack.
+This guide summarizes the concepts covered in the Graph Neural Network project pack.
 
-Graph Neural Networks operate on data structured as graphs.
+Graph Neural Networks are specialized neural networks that operate on data structured as graphs.
 
 Use this pack to jumpstart your Graph project development for applications such as _**social networks, chemical compounds, maps, transportation systems, recommender systems and many more**_.
 
