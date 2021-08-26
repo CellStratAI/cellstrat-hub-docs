@@ -118,9 +118,9 @@ Example:
 
 _Image credit: https://docs.dgl.ai/en/0.4.x/tutorials/basics/5_hetero.html_
 
-Barack Obama - Subject;
-Occupation - Relation;
-Politician - Object
+Barack Obama - _Subject_;
+Occupation - _Relation_;
+Politician - _Object_
 
 In a movie recommender system, User-Movie interactions can be marked with edges with user ratings.
 
