@@ -86,8 +86,7 @@ Use cases of GCN, include social networks or citation networks, ID Card digitali
 
 ![id_card](/img/id_card.png)
 
-_ID Card digitilization_
-_Image credit: Nanonets-ID Card Digitization and Information Extraction)_
+_ID Card digitilization (Image credit: Nanonets-ID Card Digitization and Information Extraction)_
 
 For GCN, a graph convolution operation produces the normalized sum of the node features of neighbors.
 
@@ -119,8 +118,8 @@ Example:
 
 _Image credit: https://docs.dgl.ai/en/0.4.x/tutorials/basics/5_hetero.html_
 
-Barack Obama - Subject
-Occupation - Relation
+Barack Obama - Subject;
+Occupation - Relation;
 Politician - Object
 
 In a movie recommender system, User-Movie interactions can be marked with edges with user ratings.
@@ -213,9 +212,9 @@ _Image credit: https://www.sqlshack.com/understanding-graph-databases-in-sql-se
 
 Some of the most popular implementations of graph databases are :
 
-Neo4j
-Amazon Neptune
-TigerGraph
+- Neo4j
+- Amazon Neptune
+- TigerGraph
 
 ![neo4j](/img/neo4j.png)
 
