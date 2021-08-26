@@ -69,7 +69,7 @@ Just like normal Convolutional Neural Networks, Graph Convolution Networks (GCN)
 
 Use cases of GCN, include social networks or citation networks, ID Card digitalization etc.
 
-![id_Card](/img/id_card.png)
+![id_card](/img/id_card.png)
 
 ID Card digitalization
 
