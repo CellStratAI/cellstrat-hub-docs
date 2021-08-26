@@ -26,49 +26,64 @@ Below is an example of visual representation of graphs. This is the character ne
 
 ![harry_potter_graph](/img/harry_potter_graph.png)
 
-The project (filename "Graph 1- Graph Theory (1)") illustrates the shortest path distance graph between US airports from an airline flights dataset.
+This project in the Graph pack illustrates the shortest path distance graph between US airports from an airline flights dataset.
 
 ## Knowledge Graph
 
-You can use the upload button on the top-right bar of the JupyterLab interface to upload files.
+Data can be represented as graphs to make it more interpretable. Below figure is an example of knowledge graph which shows several entities like Putin, Russia, KGB, APEC and how they are linked to one another.
 
-![upload](/img/upload.jpg)
+![putin](/img/putin.jpg)
 
-If you have multiple files and folders, the best way would be to zip your files and upload the zip to hub. Once you upload it to hub you can unzip it using the terminal. The steps to unzip are as follows:
+Question and Answering, one of the popular NLP tasks used in dialogue interface, chatbots and other information retrieval systems can be created with the help of knowledge graphs.
 
-1. Open a terminal tab in JupyterLab
-2. Change directory to `SageMaker/` with `cd SageMaker`
-3. Unzip your file with the `unzip` command which looks something like this: `unzip my_file.zip`
+E.g. KG allows to go beyond just the keyword matching and returns more relevant results like the google search result shown here :
 
-:::note
-If you uploaded your zip in any other location apart from the root of the file explorer then put that path while running the unzip command. Let's say I have a folder called code in my instance and I uploaded the zip file inside the code folder, then the command in terminal to unzip would be
-:::
-
-```bash
-cd SageMaker
-unzip code/my_file.zip
-```
+![yoda](/img/yoda.jpg)
 
 
 ## Intro to Graph and Graph Neural Networks
 
-Yes, you can install new libraries inside the notebook itself. Notebook cells can run all terminal commands by prefixing the command with `!`. So to install a new library with `pip` run the command in the following format inside a code cell in your notebook
+Images and text are structured data.
 
-```bash
-!pip install <name of library>
-```
+Convolutional Networks, Recurrent Networks, Autoencoders etc. work well on the structured data as they can be converted to the matrix or the vector like format
+
+But Graphs are unstructured data.
+
+![unstructured](/img/unstructured.jpg)
+
+GNNs are able to model the relationship between the nodes in a graph and produce a numeric representation of it. Social networks, chemical compounds, maps, transportation systems are some of the applications where graph neural networks are used.
+
+A graph is transformed to an embedding representation, for further information processing. Embeddings may be created with help of a neural network transformation.
+
+Graph frameworks like DGL (Digital Graph Library) provide in-built functions that make training the graphs easier.
 
 ## Graph Convolution Network
 
-You can run python scripts also with the `!` in the notebook cell. So running a python file would look something like this
+Just like normal Convolutional Neural Networks, Graph Convolution Networks (GCN) aid in detecting local patterns.
 
-```bash
-!python my_file.py
-```
+![embedding](/img/embedding.jpg)
+
+Use cases of GCN, include social networks or citation networks, ID Card digitalization etc.
+
+![id_Card](/img/id_card.jpg)
+
+ID Card digitalization
+
+For GCN, a graph convolution operation produces the normalized sum of the node features of neighbors.
+
+Different network configurations in GCN include Spectral and Spatial Convolutions (spacial GCN are also called message passing neural networks as they rely on aggregating feature information from neighbors).
 
 ## Graph Attention Network
 
-TODO
+Graph Attention Network (GAT) is a variant of Graph Convolutional Network that uses the attention mechanism for feature dependent and structure free normalization. This helps in representing the graphs better.
+
+![gat](/img/gat.jpg)
+
+In GAT, Additive Attention with Softmax Normalization is used for finding the attention weights (unlike Dot Product Attention of Transformers).
+
+Classification of CORA Dataset (citation network) can be done with the help of Graph Attention Network built with the framework of DGL.
+
+![cora](/img/cora.jpg)
 
 ## Relational GCN
 
