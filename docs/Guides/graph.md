@@ -14,6 +14,8 @@ Use this pack to jumpstart your Graph project development for applications such 
 
 ![graphs](/img/graphs.png)
 
+_Image credit: http://www.cs.toronto.edu/~yujiali/_
+
 This pack includes the following projects related to Graphs and Graph Neural Networks :-
 
 <TOCInline toc={toc} />
@@ -60,11 +62,15 @@ But Graphs are unstructured data.
 
 ![unstructured](/img/unstructured.png)
 
+_Image credit https://www.curvearro.com/blog/difference-between-structured-data-unstructured-data/_
+
 GNNs are able to model the relationship between the nodes in a graph and produce a numeric representation of it. Social networks, chemical compounds, maps, transportation systems are some of the applications where graph neural networks are used.
 
 A graph is transformed to an embedding representation, for further information processing. Embeddings may be created with help of a neural network transformation.
 
 ![embedding2](/img/embedding2.png)
+
+_Image credit https://medium.com/dair-ai/an-illustrated-guide-to-graph-neural-networks-d5564a551783_
 
 Graph frameworks like DGL (Digital Graph Library) provide in-built functions that make training the graphs easier.
 
@@ -74,11 +80,14 @@ Just like normal Convolutional Neural Networks, Graph Convolution Networks (GCN)
 
 ![embedding](/img/embedding.jpg)
 
+_Image credit: https://www.semanticscholar.org/paper/Towards-Machine-Learning-Enabled-Automatic-Design-W%C3%85HLIN/6af7126fea32189b8754ef2f1e1b8477729cc19e_
+
 Use cases of GCN, include social networks or citation networks, ID Card digitalization etc.
 
 ![id_card](/img/id_card.png)
 
-ID Card digitalization
+_ID Card digitalization_
+_Image credit: Nanonets-ID Card Digitization and Information Extraction)_
 
 For GCN, a graph convolution operation produces the normalized sum of the node features of neighbors.
 
@@ -90,11 +99,15 @@ Graph Attention Network (GAT) is a variant of Graph Convolutional Network that u
 
 ![gat](/img/gat.png)
 
+_Image credit: https://docs.dgl.ai/en/0.4.x/tutorials/models/1_gnn/9_gat.html_
+
 In GAT, Additive Attention with Softmax Normalization is used for finding the attention weights (unlike Dot Product Attention of Transformers).
 
 Classification of CORA Dataset (citation network) can be done with the help of Graph Attention Network built with the framework of DGL.
 
 ![cora](/img/cora.png)
+
+_Cora dataset_
 
 ## Relational GCN
 
@@ -104,6 +117,8 @@ Example:
 
 ![obama](/img/obama.png)
 
+_Image credit: https://docs.dgl.ai/en/0.4.x/tutorials/basics/5_hetero.html_
+
 Barack Obama – Subject
 Occupation – Relation
 Politician - Object
@@ -112,9 +127,13 @@ In a movie recommender system, User-Movie interactions can be marked with edges 
 
 ![movie](/img/movie.png)
 
-Relational learning tasks include Entity Classification and Link Predictions.
+_Image credit: https://docs.dgl.ai/en/0.4.x/tutorials/basics/5_hetero.html_
+
+Relational learning tasks include **Entity Classification** and **Link Predictions**.
 
 ![link_prediction](/img/link_prediction.png)
+
+_Image credit: https://www.analyticsvidhya.com/blog/2020/01/link-prediction-how-to-predict-your-future-connections-on-facebook/_
 
 ## Generative Models for Graph
 
@@ -122,13 +141,19 @@ Graph completion by the generative models helps in finding new links useful in k
 
 ![generative](/img/generative.gif)
 
+_Image credit: https://docs.dgl.ai/tutorials/models/3_generative_model/5_dgmg.html_
+
 Deep Generative Models of Graphs (DGMG) helps in structural generation that uses probability driven structure to sequentially add the nodes, edges and finally connect with the destination nodes.
 
 ![dgmg](/img/dgmg.png)
 
+_Image credit: https://docs.dgl.ai/tutorials/models/3_generative_model/5_dgmg.html_
+
 Molecular structures like cyclic molecules can be generated and validated with DGMG.
 
 ![molecules](/img/molecules.png)
+
+_Image credit: https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system_
 
 ## Giant Graphs
 
@@ -138,15 +163,21 @@ E.g. Reddit dataset constructed by Hamilton et al., wherein the nodes are posts 
 
 ![reddit](/img/reddit.png)
 
+_Image credit: https://minimaxir.com/2016/05/reddit-graph/_
+
 Social Networks like Facebook, Twitter and LinkedIn has user graphs ranging from 10 million to billion nodes for the representation of the users.
 
 ![social_network](/img/social_network.png)
+
+_Image credit: http://massprivatei.blogspot.com/2013/03/police-are-using-nucleik-ora-social.html_
 
 Due to the storage and computation needed for training these graphs in neural networks, we need sampling techniques. There are various ways in which sampling can be done from giant graphs. Two of the famous strategies are Neighbor Sampling and Control Variate Sampling.
 
 GraphSage is a variant of Graph Convolutional Network used for finding inductive node embeddings. This particular technique can be used in finding the node classification for the Pubmed dataset by Neighbor Sampling.
 
 ![graphsage](/img/graphsage.png)
+
+_Image credit: https://cs.stanford.edu/people/jure/pubs/graphsage-nips17.pdf_
 
 ## Recommendation Using Graph
 
@@ -156,6 +187,8 @@ Collaborative filtering models solve the matrix completion task by taking into a
 
 ![collaborative_filtering](/img/collaborative_filtering.png)
 
+_Image Credit: https://towardsdatascience.com/building-a-music-recommendation-engine-with-probabilistic-matrix-factorization-in-pytorch-7d2934067d4a?gi=f359e3b8f1a8_
+
 Matrix completion can be considered as link predictions on graphs.
 
 Graph Convolution Matrix Completion (GC-MC) is a graph based autoencoder framework for the matrix completion based on the deep learning for graphs.
@@ -163,6 +196,8 @@ Graph Convolution Matrix Completion (GC-MC) is a graph based autoencoder framewo
 Encoder produces the latent features of user and item nodes through message passing on bipartite interaction graph. Decoder is used to reconstruct the rating links from the latent features.
 
 ![recommendations](/img/recommendations.jpg)
+
+_Image credit: https://arxiv.org/abs/1706.02263_
 
 ## Graph analysis with Neo4j
 
@@ -174,6 +209,8 @@ A graph database transcends storing data points, rather, it stores data relation
 
 ![graph_db](/img/graph_db.png)
 
+_Image credit: https://www.sqlshack.com/understanding-graph-databases-in-sql-server/_
+
 Some of the most popular implementations of graph databases are :
 
 Neo4j
@@ -182,6 +219,8 @@ TigerGraph
 
 ![neo4j](/img/neo4j.png)
 
+_Image credit: https://www.bmc.com/blogs/neo4j-graph-database/_
+
 Neo4j is an Open-source graph database. It supports a wide range of programming languages including Python and OS including Windows, Linux. Cypher is its query language and helps to connect with Spark.
 
 Neo4j finds use in fraud detection, real-time recommendations etc.
@@ -189,6 +228,8 @@ Neo4j finds use in fraud detection, real-time recommendations etc.
 Graph Analysis can be done in Neo4j Sandbox, cloud based instance of Neo4j server by connecting it with CellStrat Hub notebooks.
 
 ![neo4j_nodes](/img/neo4j_nodes.png)
+
+_https://neo4j.com/developer/cypher/intro-cypher/_
 
 A query with Cypher might look like :
 
