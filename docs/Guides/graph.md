@@ -24,7 +24,7 @@ Graph is a combination of vertices (nodes) and lines (edges). Vertex is a point 
 
 ![graph](/img/graph.png)
 
-Image credit: https://en.wikipedia.org/wiki/Vertex_(graph_theory)
+Image credit: "https://en.wikipedia.org/wiki/Vertex_(graph_theory)"
 
 Below is an example of visual representation of graphs. This is the character network for Harry Potter and the Goblet of Fire.
 
@@ -40,12 +40,15 @@ Data can be represented as graphs to make it more interpretable. Below figure is
 
 ![putin](/img/putin.png)
 
+Image credit: https://www.analyticsvidhya.com/blog/2019/10/how-to-build-knowledge-graph-text-using-spacy/
+
 Question and Answering, one of the popular NLP tasks used in dialogue interface, chatbots and other information retrieval systems can be created with the help of knowledge graphs.
 
 E.g. KG allows to go beyond just the keyword matching and returns more relevant results like the google search result shown here :
 
 ![YODA](/img/YODA.png)
 
+Image credit: https://ahrefs.com/blog/google-knowledge-graph/
 
 ## Intro to Graph and Graph Neural Networks
 
