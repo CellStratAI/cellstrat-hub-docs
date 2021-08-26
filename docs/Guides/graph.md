@@ -24,13 +24,13 @@ Graph is a combination of vertices (nodes) and lines (edges). Vertex is a point 
 
 ![graph](/img/graph.png)
 
-_Image credit: https://en.wikipedia.org/wiki/Vertex_(graph_theory)_
+Image credit: https://en.wikipedia.org/wiki/Vertex_(graph_theory)
 
 Below is an example of visual representation of graphs. This is the character network for Harry Potter and the Goblet of Fire.
 
 ![harry_potter_graph](/img/harry_potter_graph.png)
 
-_Image credit: https://anthonybonato.com/2016/08/03/social-networks-in-novels-and-films/_
+Image credit: https://anthonybonato.com/2016/08/03/social-networks-in-novels-and-films/
 
 This project in the Graph pack illustrates the shortest path distance graph between US airports from an airline flights dataset.
 
