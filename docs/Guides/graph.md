@@ -6,7 +6,7 @@ import TOCInline from '@theme/TOCInline';
 
 # Introduction to Graph Neural Networks pack
 
-This guide summarizes the concepts covered in the Graph Neural Network project pack.
+This guide summarizes the concepts covered in the Graph Neural Network project pack (_get this pack here https://cellstrathub.com/packs_).
 
 Graph Neural Networks are specialized neural networks that operate on data structured as graphs.
 
@@ -235,3 +235,5 @@ A _query_ with Cypher might look like :
 MATCH (:Person {name: 'Jennifer'})-[:WORKS_FOR]->(company:Company) RETURN company
 
 Recommendations are done with querying the graph in Neo4j. Techniques used for the recommendations are - _Collaborative Filtering, PageRank, Personalized PageRank and Topic Sensitive Search_.
+
+_**Get the Graph Neural Networks pack here https://cellstrathub.com/packs**_
