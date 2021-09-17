@@ -4,7 +4,7 @@ sidebar_position: 1
 import TOCInline from '@theme/TOCInline';
 
 
-# Introduction to Graph Neural Networks pack
+# Intro to Graph Neural Networks pack
 
 This guide summarizes the concepts covered in the Graph Neural Network project pack (_get this pack here https://cellstrathub.com/packs_).
 

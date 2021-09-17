@@ -1,0 +1,298 @@
+---
+sidebar_position: 1
+---
+
+# HubAPI Quickstart 🚀
+
+import TOCInline from '@theme/TOCInline';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Building and Training Models is one thing and Deploying it for the world to use is another. AI Deployment has always been a challenging and complicated task, so we at CellStrat decided to squash the complications and make it much simpler with the CellStrat Hub API Platform, a simple and highly flexible and customizable platform for deploying your AI Models as REST APIs which can be called from anywhere like a web application, server-side application or from the edge.
+
+With CellStrat Hub API, you can,
+- Deploy your AI Models in under 15 minutes in only 3 steps.
+- As simple as it may look, you still have complete control over your deployment to customize it in any way you want.
+- The Models are deployed as Serverless APIs, which means you only pay for the number of invocations, unlike traditional deployment options. But that is if you pay at all! Did we mention its completely free to get started?
+- APIs are auto-scaled based on traffic, so you don't need to worry about the deployment infrastructure and can focus on building your model.
+- All Models are deployed using a docker container under the hood, that means you get complete control over your execution environment, allowing you to optimize your inference in low-level languages like C++ also.
+- You can deploy a maximum of 5 Model APIs for free. But hold on! Everything is completely customizable, so no one is stopping you from deploying multiple models in a single API! For all you know, you can deploy 10 models in a single API while staying in your free plan. This is the most cost effective option you can find to deploy your models.
+- Enterprise plans for Custom Deployment are also available with Premium Support.
+
+Get started with deploying your first model as an API in this hands-on guide. You will be deploying an Ants and Bees Image Classification Model in this Tutorial. This tutorial covers the deployment in both PyTorch and Tensorflow (Keras).
+
+<TOCInline toc={toc} />
+
+## Ants vs Bees Image Classifier
+
+![Ants and Bees](/img/deploy/ants_bees.png)
+
+For this quickstart, we finetuned a Resnet18 on this small [ants and bees dataset](https://download.pytorch.org/tutorial/hymenoptera_data.zip) with 120 examples for each class.
+
+To follow along this tutorial, let's get you setup with the starter notebook, and the model weights and inference script:
+1. Start your Hub Workspace Instance from your [dashboard](https://console.cellstrathub.com/).
+2. Once it starts upload this [PyTorch Quickstart Notebook](https://cellstrat-public.s3.amazonaws.com/deploy-quickstart/HubAPI-Quickstart_PyTorch.ipynb) or [Tensorflow Quickstart Notebook](https://cellstrat-public.s3.amazonaws.com/deploy-quickstart/HubAPI-Quickstart_Tensorflow.ipynb) to your Instance.
+3. Run the first cell of the notebook which says `Download Setup Files`. This will download the base code and model weights.
+
+Let's take a look at the files that got downloaded,
+1. `images_ants_bees/` - Contains test images of ants and bees (5 each)
+2. `classifier.py` - The inference code of the model. The `predict()` function in the script handles the prediction from direct API inputs.
+3. `ants_bees_model.pt` - The finetuned model weights
+
+
+## Step 1: Initialize your HubAPI Project
+
+CellStrat Hub Workspace comes with a command line tool called `hub` which does all of the heavy lifting for deploying your model as an API.
+
+:::tip
+To get a detailed description of every command in the tool you can run use the `--help` flag. Example, `hub --help`, `hub init --help`, and so on for every command.
+:::
+
+We start by initializing our HubAPI Project for our Ants and Bees Classifier using the `init` command which automatically generates the boilerplate for your deployment package.
+```
+!hub init ants_bees
+```
+Here `ants_bees` is the name of your Project / API. This acts as your identifier of your API that we will be deploying. The project name should only contain alphanumeric characters and hyphens. After running this command we see a `ants_bees/` folder got generated. Let's do a tour of the files and folders that got generated inside `ants_bees/`.
+
+```
+ants_bees/
+    - model/
+    - src/
+        - main.py
+        - utils.py
+        - requirements.txt
+    - Dockerfile
+    - hub_config.json
+```
+
+1. Right after we go inside `ants_bees/` we see two files,
+    1. `Dockerfile` - This file describes the docker configuration for your API. For this tutorial you don't need to know what docker is or what this file is doing. You can safely ignore it for now.
+    2. `hub_config.json` - This file is the configuration file describing your project. Again for this tutorial you don't need to change anything.
+2. The two folders we see inside are,
+    1. `src/` - Our source code goes in this directory. We will turn our prediction code from above into a script and copy it there.
+    2. `model/` - All model files or any of the large files will go into this directory. You can use this directory to store all your model files or any other file which is large in size. The path of this directory after deployment will be accessible to our model source code in the `MODEL_DIR` environment variable. You can access it in python using `os` by simply running `os.getenv('MODEL_DIR')`. Check the model loading code in `classifier.py`.
+3. `src/` contains 3 files,
+    1. `main.py` - This is the main python file which will be executed whenever our model is invoked after deployment.
+    2. `utils.py` - This is a complementary script which contains some basic utility functions that might be useful for our model, like decoding base64 encoded images which is used in this project in the `predict()` function from `classifier.py`
+    3. `requirements.txt` - This file will contain the dependencies / libraries that our project requires. In this case, it would be Pytorch and Torchvision. Numpy and Pillow are preinstalled so no need to specify them unless you want a specific version.
+
+## Step 2: Integrate your Inference Code
+
+Now that we have a basic understanding of the generated files and folders, we need to refactor our original inference code from the notebook as a python module/script. But before doing that we need to define the request and response structure of our API.
+
+### Structuring the API
+
+The HubAPI Platform deploys the models as Serverless REST APIs to which the end user can make a POST request. If you don't know what a POST is, then briefly its essentially a method of API request where the user sends some data to the server which synchronously responds to the request by sending some data back to the user. In this case, we will send our images encoded as JSON strings to the deployed API (i.e. server) and our model will respond with the corresponding predictions for each image.
+
+#### Request
+
+In an HubAPI all requests need to be json-encoded, so we would have to convert our input images to a base64 encoded string and then send a list of those if we want to make predictions using multiple images. So we can send a list of base64 encoded strings of images as our input. So the API request will look something like this,
+```
+{
+    "service_id": "ants-bees",
+    "input": [
+        "BASE64 ENCODED STRING of IMAGE 1",
+        "BASE64 ENCODED STRING of IMAGE 2",
+        "and so on..."
+    ]
+}
+```
+Here, `service_id` is the name of the project, in this case it is `ants-bees`. `input` is where we would send the json-encoded list of images which are in base64 format. The contents of the `input` is what your model will receive.
+
+You can check the `predict()` function in `classifier.py` where we use the `convert_base64_to_image()` utility function from `utils.py` to convert this list of base64 images to either numpy arrays (for tensorflow) or pillow images (for pytorch).
+
+_If you are wondering, what if multiple people have a service\_id with the same name, how it will differentiate between them, then don't worry. The platform automatically figures out which user is making the request using your unique API Key._
+
+#### Response
+
+Now we also, need to decide on how we would return the response, after making our predictions. We could return a list of tuples where each tuple contains the class and the probability of that class. So essentially for each image we will have a tuple of 2 items. So it would look like this,
+```
+{
+    "invocation_id": "06565a57-1c80-4fc9-9789-9421986bb615",
+    "output": [
+        ('ants', 0.8),
+        ('bees, 0.9),
+        and more...
+    ]
+}
+```
+Here, `invocation_id` is automatically generated for each invocation to the model which is just for your future reference. The outputs returned from our model are available in the `output` key when we receive the response. As you can see in the output, we have a list of tuples, each corresponding to a input image in our original inputs.
+
+This is essentially everything that you need to know on the Request-Response structure for the API we will be deploying. For all your other projects, you can have a similar or any other structure. Its completely upto you, no limitations or strict format requirements (as long as it can be json encoded).
+
+### Putting Everything Together
+
+Now that we have an understanding of the API, we can start integrating our code in the project.
+
+1. The first thing is to copy the `classifier.py` file to the `ants-bees/src/` directory.
+2. Then we copy the `ants_bees_model.pt` to the `ants-bees/model/` directory.
+3. Now we integrate our `predict()` function in `main.py`. By default, the autogenerated `main.py` in the `ants-bees/src/` should look like this,
+```python
+import json
+import os
+# Add your own import statements
+
+# This environment variable gives you the
+# path to the directory of your model. You 
+# can use this in your code to load model 
+# and other large files
+# MODEL_DIR = os.getenv("MODEL_DIR")
+
+def handler(event, context):
+    '''The main function which gets triggered on an API call for an AI model'''
+    # ==================== DO NOT EDIT ====================
+    if event == 'PING':
+        return {
+            'statusCode': 200,
+            'body': json.dumps("PING RESPONSE")
+        }
+    # =====================================================
+    # ++++++++ ADD YOUR INFERENCE CODE HERE ++++++++
+
+    # Access your json encoded string input
+    inputs = json.loads(event['inputs'])
+
+    # Predict function of your model on the input
+    output = "YOUR OUTPUT"
+   
+    return {
+        'statusCode': 200,
+        'body': json.dumps(output)
+    }
+```
+To integrate our code in this, we just have to add 2 lines of code, 
+1. `from classifier import predict` - We import our `predict()` function from the `classifier.py` at the top of the file where `# Add your own import statements` comment is mentioned.
+2. `output = predict(inputs)` - We apply the function and return the result to the `output` variable at the 6th last line, where `"YOUR OUTPUT"` is specified.
+3. We also add `torch` and `torchvision` in the `requirements.txt` file.
+
+Finally, our `main.py`, and `requirements.txt` looks like this:
+<Tabs
+defaultValue="main.py"
+values={[
+{label: 'main.py', value: 'main.py'},
+{label: 'requirements.txt', value: 'requirements.txt'},
+]}>
+<TabItem value="main.py">
+
+```python
+import json
+import os
+# Add your own import statements
+from classifier import predict
+
+def handler(event, context):
+    '''The main function which gets triggered on an API call for an AI model'''
+    # ==================== DO NOT EDIT ====================
+    if event == 'PING':
+        return {
+            'statusCode': 200,
+            'body': json.dumps("PING RESPONSE")
+        }
+    # =====================================================
+    # ++++++++ ADD YOUR INFERENCE CODE HERE ++++++++
+
+    # Access your json encoded string input
+    inputs = json.loads(event['inputs'])
+
+    # Predict function of your model on the input
+    output = predict(inputs)
+   
+    return {
+        'statusCode': 200,
+        'body': json.dumps(output)
+    }
+
+```
+
+</TabItem>
+<TabItem value="requirements.txt">
+
+```
+torch
+torchvision
+```
+
+</TabItem>
+</Tabs>
+
+## Step 3: Build and Deploy your Model
+
+A checklist of what we have done till now,
+1. We initialized the HubAPI Project to generate the boilerplate.
+2. Added our source code in the `src/` directory of the project and put the model weights in the `model` directory.
+
+Now we can, go to the final step by building the project and deploying it. To run the next two commands, we change directory into the `ants-bees/` project directory.
+
+Once we are in the project directory, we can build the project by running the following command:
+```
+hub build
+```
+This command builds a docker image of the source code and its dependencies. It also uploads the model weights in the `model` directory to a file system server from where the model will access the weights. The build process can take a few minutes to complete.
+
+:::info
+The reason the model weights are not included in the docker image is to reduce the overall deployment package size and make the inference faster.
+:::
+
+Once the build is complete, we can finally deploy our model,
+```
+hub deploy
+```
+Once the deployment is complete, you can check your deployed model in the [Hub API Dashboard](https://console.cellstrathub.com/deployments).
+
+## Testing the API
+
+To test our API we need to first obtain an API Key. In your [Hub API Dashboard](https://console.cellstrathub.com/deployments) you should see an API key already available from where you can copy the key.
+
+:::tip
+This API key is unique to you and should be kept secure. Leaking this key will result in your monthly API calls being consumed. But luckily, if you notice that your API key is being misused, you can disable it in the dashboard or delete it all together.
+:::
+
+Once you have the API Key, let's make a POST request to our API and check the result,
+```python
+import json
+import requests
+
+# This URL is a universal API Endpoint for everyone. 
+# The service_id in the payload is what specifies
+# which Hub API Project to invoke.
+HubAPI_URL = "https://api.cellstrathub.com/synchronous"
+API_KEY = "PASTE YOUR API KEY HERE"
+
+headers = {
+  "x-api-key": API_KEY,
+  "Content-Type": "application/json"
+}
+
+# Let's load some test images
+image_strings = []
+# TODO: load images
+
+payload = {
+  "service_id": "ants-bees", # The name of the Hub API Project
+  "input": image_strings
+}
+
+response = requests.post(HubAPI_URL, headers=headers, data=json.dumps(payload))
+print(response.json())
+```
+Voila! Making the POST request to your deployed model was a success!
+
+:::note
+The invocation for the first time can be slow or even timeout, as it is warming up. If it does timeout, don't worry you can just retry it by running the cell again.
+:::
+
+```
+TODO:
+- Add 25 second limit note
+- Talk about the upcoming Asynchronous API
+```
+
+## What's Next?
+
+Congratulations on deploying your first model! Hope you found the process easy and quick. We would love to here your feedback and improve the experience. You can share your feedback [here](https://console.cellstrathub.com/support) and we will respond to your feedback in under 12 hours 🙂.
+
+The next steps in your journey to becoming a master of deploying models, doesn't stop here. You can learn more about,
+1. API Key Management
+2. [Checkout out Webinars on Everything AI](https://www.meetup.com/Disrupt-4-0/events/s)
+3. More Tutorials and Advanced Guides are coming soon, so stay tuned!
+
