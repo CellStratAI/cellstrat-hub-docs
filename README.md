@@ -2,21 +2,8 @@
 
 This repository contains the documentation on using the CellStrat Hub platform for python and machine learning development and deployment.
 
-#### Current Docs Version = 1.0.0
-
-#### Current Hub Version = 1.2.0
-
-## Getting Started
-
-Coming Soon
-
-## Guides
-
-Coming Soon
-
-## FAQs
-
-Coming Soon
+#### CellStrat Hub Version: 2.0
+#### CellStrat Docs Version: 1.2
 
 ## Contribute
 
