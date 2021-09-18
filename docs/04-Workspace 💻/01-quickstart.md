@@ -41,7 +41,7 @@ The instance can take around 2 minutes to start depending on your tier.
 
 7. On the left, you can see your file explorer which has a folder called Packs which contains all the packs you own.
 8. On the right, you can see various options for creating a notebook depending on the kernel. If you don't know what a kernel is then in a nutshell, jupyter kernels here are anaconda environments which have some libraries pre-installed depending on the use case. For example, `conda_python3` is the most commonly used kernel for general python and machine learning applications. For deep learning you can use the `conda_tensorflow_p36` or the `conda_pytorch_p36` kernels.
-9. You can explore other features and aspects of Jupyter Lab, start coding, switch to dark mode if you like (under Settings -> JupyterLab Theme). For more information on effectively using JupyterLab, please go to the [FAQ](/faq)
+9. You can explore other features and aspects of Jupyter Lab, start coding, switch to dark mode if you like (under Settings -> JupyterLab Theme). For more information on effectively using JupyterLab, please go to the [FAQ](/Workspace%20💻/faq)
 
 :::note
 The instance has an Idle timeout of 30 minutes for the free tier and 60 minutes for the paid tiers. This idle timeout checks for inactivity in your jupyter notebooks and if the notebooks have been idle for more than this time, the instance automatically shuts down to save your compute hours.
