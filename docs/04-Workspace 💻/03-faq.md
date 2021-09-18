@@ -1,8 +1,4 @@
----
-sidebar_position: 2
----
-
-# Frequently Asked Questions (FAQ)
+# Frequently Asked Questions (FAQ) 📜
 
 Here are some of the questions that are often asked by new users.
 

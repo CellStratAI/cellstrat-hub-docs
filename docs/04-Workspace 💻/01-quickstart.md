@@ -1,13 +1,11 @@
----
-sidebar_position: 1
-slug: /
----
+# Workspace Quickstart 💻
 
-# Getting Started
+CellStrat Hub Workspace is a simple yet powerful development environment for rapid AI development based on JupyterLab. Get started with Workspace in just a few minutes
 
-CellStrat Hub is a simple yet powerful platform for rapid AI development and deployment with tight integration with your favorite tools like Jupyter Lab, Git and Docker.
+**_Guides on the New Features and Usage of Hub Workspace Coming Soon. Stay Tuned!_**
 
-## Quick Start Guide
+## Quickstart
+_<h3>Soon to be Updated for version Hub 2.0</h3>_
 
 1. Sign Up for a free account on CellStrat Hub [here](https://cellstrathub.com/sign-up)
 2. Once your account is created and verified, login to CellStrat Hub Console [here](https://console.cellstrathub.com/)
