@@ -3,10 +3,9 @@ sidebar_position: 2
 ---
 
 # What's New? ✨
+<h3>Release Notes</h3>
 
 import TOCInline from '@theme/TOCInline';
-
-Release Notes of New CellStrat Hub Versions
 
 <TOCInline toc={toc} />
 

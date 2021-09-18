@@ -8,18 +8,7 @@ import TOCInline from '@theme/TOCInline';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Building and Training Models is one thing and Deploying it for the world to use is another. AI Deployment has always been a challenging and complicated task, so we at CellStrat decided to squash the complications and make it much simpler with the CellStrat Hub API Platform, a simple and highly flexible and customizable platform for deploying your AI Models as REST APIs which can be called from anywhere like a web application, server-side application or from the edge.
-
-With CellStrat Hub API, you can,
-- Deploy your AI Models in under 15 minutes in only 3 steps.
-- As simple as it may look, you still have complete control over your deployment to customize it in any way you want.
-- The Models are deployed as Serverless APIs, which means you only pay for the number of invocations, unlike traditional deployment options. But that is if you pay at all! Did we mention its completely free to get started?
-- APIs are auto-scaled based on traffic, so you don't need to worry about the deployment infrastructure and can focus on building your model.
-- All Models are deployed using a docker container under the hood, that means you get complete control over your execution environment, allowing you to optimize your inference in low-level languages like C++ also.
-- You can deploy a maximum of 5 Model APIs for free. But hold on! Everything is completely customizable, so no one is stopping you from deploying multiple models in a single API! For all you know, you can deploy 10 models in a single API while staying in your free plan. This is the most cost effective option you can find to deploy your models.
-- Enterprise plans for Custom Deployment are also available with Premium Support.
-
-Get started with deploying your first model as an API in this hands-on guide. You will be deploying an Ants and Bees Image Classification Model in this Tutorial. This tutorial covers the deployment in both PyTorch and Tensorflow (Keras).
+Hub API is an Intuitive Deployment Platform for Serving AI Models as REST APIs. Get started with deploying your first model as an API in this hands-on guide. You will be deploying an Ants and Bees Image Classification Model in this Tutorial. This tutorial covers the deployment in both PyTorch and Tensorflow/Keras (to be updated soon).
 
 <TOCInline toc={toc} />
 
@@ -31,7 +20,7 @@ For this quickstart, we finetuned a Resnet18 on this small [ants and bees datase
 
 To follow along this tutorial, let's get you setup with the starter notebook, and the model weights and inference script:
 1. Start your Hub Workspace Instance from your [dashboard](https://console.cellstrathub.com/).
-2. Once it starts upload this [PyTorch Quickstart Notebook](https://cellstrat-public.s3.amazonaws.com/deploy-quickstart/HubAPI-Quickstart_PyTorch.ipynb) or [Tensorflow Quickstart Notebook](https://cellstrat-public.s3.amazonaws.com/deploy-quickstart/HubAPI-Quickstart_Tensorflow.ipynb) to your Instance.
+2. Once it starts upload this [PyTorch Quickstart Notebook](https://cellstrat-public.s3.amazonaws.com/deploy-quickstart/HubAPI-Quickstart_PyTorch.ipynb) or Tensorflow Quickstart Notebook(_link to be updated soon_) to your Instance.
 3. Run the first cell of the notebook which says `Download Setup Files`. This will download the base code and model weights.
 
 Let's take a look at the files that got downloaded,
@@ -78,7 +67,7 @@ ants_bees/
 
 ## Step 2: Integrate your Inference Code
 
-Now that we have a basic understanding of the generated files and folders, we need to refactor our original inference code from the notebook as a python module/script. But before doing that we need to define the request and response structure of our API.
+Now that we have a basic understanding of the generated files and folders, we need to refactor our original inference code from the notebook as a python module/script. But before doing that let's understand the request and response structure of our API.
 
 ### Structuring the API
 
@@ -247,17 +236,17 @@ To test our API we need to first obtain an API Key. In your [Hub API Dashboard](
 This API key is unique to you and should be kept secure. Leaking this key will result in your monthly API calls being consumed. But luckily, if you notice that your API key is being misused, you can disable it in the dashboard or delete it all together.
 :::
 
-Once you have the API Key, let's make a POST request to our API and check the result,
+Once you have the API Key, let's send a POST request to our API using the test images in the `images_ants_bees/` directory which was downloaded earlier.
 ```python
+import os
 import json
 import requests
+import base64
 
-# This URL is a universal API Endpoint for everyone. 
-# The service_id in the payload is what specifies
-# which Hub API Project to invoke.
+# This URL is a universal API Endpoint for HubAPI. 
 HubAPI_URL = "https://api.cellstrathub.com/synchronous"
-API_KEY = "PASTE YOUR API KEY HERE"
-
+# Paste your API URL here
+API_KEY = "YOUR API KEY HERE"
 headers = {
   "x-api-key": API_KEY,
   "Content-Type": "application/json"
@@ -265,15 +254,35 @@ headers = {
 
 # Let's load some test images
 image_strings = []
-# TODO: load images
+test_img_dir = '../images_ants_bees'
+
+for img in os.listdir(test_img_dir):
+    if os.path.splitext(img)[1] == '.jpg':
+        with open(os.path.join(test_img_dir, img), 'rb') as f:
+            img_bytes = f.read()
+            # convert to a base64 string
+            img_str = base64.b64encode(img_bytes).decode('utf-8')
+            image_strings.append(img_str)
 
 payload = {
   "service_id": "ants-bees", # The name of the Hub API Project
-  "input": image_strings
+  "input": json.dumps(image_strings) # the json-encoded input
 }
 
-response = requests.post(HubAPI_URL, headers=headers, data=json.dumps(payload))
-print(response.json())
+# Send the POST request
+response = requests.post(HubAPI_URL, headers=headers, data=json.dumps(payload)).json()
+body = json.loads(response['body'])
+
+print('Status Code:', response['statusCode'])
+print('Invocation ID:', body['invocation_id'])
+print('\n=== OUTPUT ===')
+print(body['output'])
+```
+```
+Status Code: 200
+Invocation ID: b2672235-cbf6-4834-a1bc-fea1288d6b18
+
+Predictions: [["bees", 0.906], ["bees", 0.509], ["ants", 0.509], ["bees", 0.868], ["bees", 0.824], ["ants", 0.923], ["ants", 0.563], ["ants", 0.717], ["ants", 0.752], ["ants", 0.775]]
 ```
 Voila! Making the POST request to your deployed model was a success!
 
@@ -281,18 +290,27 @@ Voila! Making the POST request to your deployed model was a success!
 The invocation for the first time can be slow or even timeout, as it is warming up. If it does timeout, don't worry you can just retry it by running the cell again.
 :::
 
-```
-TODO:
-- Add 25 second limit note
-- Talk about the upcoming Asynchronous API
-```
+You can now go to your [HubAPI Dashboard](https://console.cellstrathub.com/deployments) and you should find `ants-bees` as one of your deployed models as shown below along with other information like API Keys and Usage. Click on `ants-bees` to go to its Dashboard.
+
+![Hub API Dashboard](/img/deploy/hub_api_dashboard.png)
+
+In the `ants-bees` dashboard you can see your model's invocation history along with the inputs and the outputs sent in the request. You can also view the execution logs of your deployed model, as shown below.
+
+![Hub API Dashboard](/img/deploy/hub_api_model_dashboard.png)
+
+:::note
+This deployment is a Synchronous API i.e., you send the request and get the response in the same API call. There is a timeout limit for this synchronous API which is 25 seconds. So make sure your model completes inference within 25 seconds.
+
+But given that, we are also working on the Asynchronous API for batch inference which doesn't have a timeout limit. This will be launched in the near future, so stay tuned!
+:::
 
 ## What's Next?
 
 Congratulations on deploying your first model! Hope you found the process easy and quick. We would love to here your feedback and improve the experience. You can share your feedback [here](https://console.cellstrathub.com/support) and we will respond to your feedback in under 12 hours 🙂.
 
-The next steps in your journey to becoming a master of deploying models, doesn't stop here. You can learn more about,
-1. API Key Management
-2. [Checkout out Webinars on Everything AI](https://www.meetup.com/Disrupt-4-0/events/s)
-3. More Tutorials and Advanced Guides are coming soon, so stay tuned!
+But, your journey in deployment doesn't stop here. You can learn more about,
+1. Hub CLI and HubAPI Dashboard (_guide coming soon_)
+2. API Key Management (_guide coming soon_)
+3. [Checkout out Webinars on Everything AI](https://www.meetup.com/Disrupt-4-0/events/s)
+4. Multi-Model APIs (_guide coming soon_)
 
