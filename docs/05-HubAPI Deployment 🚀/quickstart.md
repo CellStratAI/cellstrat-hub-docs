@@ -69,7 +69,7 @@ ants_bees/
 
 Now that we have a basic understanding of the generated files and folders, we need to refactor our original inference code from the notebook as a python module/script. But before doing that let's understand the request and response structure of our API.
 
-### Structuring the API
+### Structuring the API (Explanation)
 
 The HubAPI Platform deploys the models as Serverless REST APIs to which the end user can make a POST request. If you don't know what a POST is, then briefly its essentially a method of API request where the user sends some data to the server which synchronously responds to the request by sending some data back to the user. In this case, we will send our images encoded as JSON strings to the deployed API (i.e. server) and our model will respond with the corresponding predictions for each image.
 
@@ -112,6 +112,8 @@ This is essentially everything that you need to know on the Request-Response str
 ### Putting Everything Together
 
 Now that we have an understanding of the API, we can start integrating our code and model in the project.
+
+**_Your Action Needed in this Part of the Process_**
 
 1. The first thing is to copy the `classifier.py` file to the `ants-bees/src/` directory.
 2. Then we copy the `ants_bees_model.pt` to the `ants-bees/model/` directory.
