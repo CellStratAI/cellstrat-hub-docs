@@ -188,7 +188,7 @@ Now we can, go to the final step by building the project and deploying it. To ru
 
 Once we are in the project directory, we can build the project by running the following command:
 ```
-hub build
+hub build -p <PATH TO HubAPI PROJECT>
 ```
 This command builds a docker image of the source code and its dependencies. It also uploads the model weights in the `model` directory to a file system server from where the model will access the weights. The build process can take a few minutes to complete.
 
@@ -198,7 +198,7 @@ The reason the model weights are not included in the docker image is to reduce t
 
 Once the build is complete, we can finally deploy our model,
 ```
-hub deploy
+hub deploy -p <PATH TO HubAPI PROJECT>
 ```
 Once the deployment is complete, you can check your deployed model in the [Hub API Dashboard](https://console.cellstrathub.com/deployments).
 
