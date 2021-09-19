@@ -116,8 +116,14 @@ Now that we have an understanding of the API, we can start integrating our code 
 1. The first thing is to copy the `classifier.py` file to the `ants-bees/src/` directory.
 2. Then we copy the `ants_bees_model.pt` to the `ants-bees/model/` directory.
 3. Now we integrate our `predict()` function in `main.py`. To integrate our code in the `main.py`, we just have to add 2 lines of code, 
-    1. `from classifier import predict` - We import our `predict()` function from the `classifier.py` at the top of the file where `# Add your own import statements` comment is mentioned.
-    2. `output = predict(inputs)` - We apply the function and return the result to the `output` variable at the 6th last line, where `"YOUR OUTPUT"` is specified.
+    1. We import our `predict()` function from the `classifier.py` at the top of the file where `# Add your own import statements` comment is mentioned.
+    ```
+    from classifier import predict
+    ```
+    2. We apply the imported `predict()` function and return the result to the `output` variable at the 6th last line, where `"YOUR OUTPUT"` is specified.
+    ```
+    output = predict(inputs)
+    ```
 4. We also add `torch` and `torchvision` in the `requirements.txt` file as these libraries are required for our code to run.
 
 Finally, our `main.py`, and `requirements.txt` should look like this:
