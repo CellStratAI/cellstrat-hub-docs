@@ -277,6 +277,6 @@ Congratulations on deploying your first model! Hope you found the process easy a
 But, your journey in deployment doesn't stop here. You can learn more about,
 1. Hub CLI and HubAPI Dashboard (_guide coming soon_)
 2. API Key Management (_guide coming soon_)
-3. [Checkout out Webinars on Everything AI](https://www.meetup.com/Disrupt-4-0/events/s)
+3. [Checkout out Webinars on Everything AI](https://www.meetup.com/Disrupt-4-0/events/)
 4. Multi-Model APIs (_guide coming soon_)
 
