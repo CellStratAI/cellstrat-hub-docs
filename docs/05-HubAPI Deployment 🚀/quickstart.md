@@ -203,6 +203,8 @@ This API key is unique to you and should be kept secure. Leaking this key will r
 :::
 
 Once you have the API Key, let's send a POST request to our API using the test images in the `images_ants_bees/` directory which was downloaded earlier.
+
+**DON'T FORGET TO PUT YOUR API KEY IN THE TEST CODE BELOW WHERE IT'S SPECIFIED**
 ```python
 import os
 import json
