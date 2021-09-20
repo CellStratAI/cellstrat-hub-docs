@@ -31,7 +31,7 @@ Let's take a look at the files that got downloaded,
 
 ## Step 1: Initialize your HubAPI Project
 
-CellStrat Hub Workspace comes with a command line tool called `hub` which does all of the heavy lifting for deploying your model as an API.
+CellStrat Hub Workspace comes with a command line tool called `hub` which does all of the heavy lifting for deploying your model as an API. To make it simpler, we will be running the commands in the Quickstart Notebook itself which you downloaded earlier.
 
 :::tip
 To get a detailed description of every command in the tool you can run use the `--help` flag. Example, `hub --help`, `hub init --help`, and so on for every command.
@@ -39,7 +39,7 @@ To get a detailed description of every command in the tool you can run use the `
 
 We start by initializing our HubAPI Project for our Ants and Bees Classifier using the `init` command which automatically generates the boilerplate for your deployment package.
 ```
-!hub init ants_bees
+hub init ants_bees
 ```
 Here `ants_bees` is the name of your Project / API. This acts as your identifier of your API that we will be deploying. The project name should only contain alphanumeric characters and hyphens. After running this command we see a `ants_bees/` folder got generated. Let's do a tour of the files and folders that got generated inside `ants_bees/`.
 
