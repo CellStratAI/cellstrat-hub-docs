@@ -8,7 +8,7 @@ import TOCInline from '@theme/TOCInline';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Hub API is an Intuitive Deployment Platform for Serving AI Models as REST APIs. Get started with deploying your first model as an API in this hands-on guide. You will be deploying an Ants and Bees Image Classification Model in this Tutorial. This tutorial covers the deployment in both PyTorch and Tensorflow/Keras (to be updated soon).
+Hub API is an Intuitive Deployment Platform for Serving AI Models as REST APIs. Get started with deploying your first model as an API in this hands-on guide. You will be deploying an Ants and Bees Image Classification Model in this Tutorial. This tutorial covers the deployment in both PyTorch and Tensorflow/Keras.
 
 <TOCInline toc={toc} />
 
@@ -16,17 +16,36 @@ Hub API is an Intuitive Deployment Platform for Serving AI Models as REST APIs. 
 
 ![Ants and Bees](/img/deploy/ants_bees.png)
 
-For this quickstart, we finetuned a Resnet18 on this small [ants and bees dataset](https://download.pytorch.org/tutorial/hymenoptera_data.zip) with 120 examples for each class.
+For this quickstart, we finetuned a Resnet model on this small [ants and bees dataset](https://download.pytorch.org/tutorial/hymenoptera_data.zip) with 120 examples for each class.
+
+<Tabs>
+<TabItem value="pt" label="PyTorch" default>
 
 To follow along this tutorial, let's get you setup with the starter notebook, and the model weights and inference script:
 1. Start your Hub Workspace Instance from your [dashboard](https://console.cellstrathub.com/).
-2. Once it starts upload this [PyTorch Quickstart Notebook](https://cellstrat-public.s3.amazonaws.com/deploy-quickstart/HubAPI-Quickstart_PyTorch.ipynb) or Tensorflow Quickstart Notebook(_link to be updated soon_) to your Instance.
+2. Once it starts, download and upload this [PyTorch Quickstart Notebook](https://cellstrat-public.s3.amazonaws.com/deploy-quickstart/HubAPI-Quickstart_PyTorch.ipynb) to your Instance.
 3. Run the first cell of the notebook which says `Download Setup Files`. This will download the base code and model weights.
 
 Let's take a look at the files that got downloaded,
 1. `images_ants_bees/` - Contains test images of ants and bees (5 each)
 2. `classifier.py` - The inference code of the model. The `predict()` function in the script handles the prediction from direct API inputs.
-3. `ants_bees_model.pt` - The finetuned model weights
+3. `ants_bees_weights.pt` - The finetuned pytorch model weights
+
+</TabItem>
+<TabItem value="tf" label="Tensorflow">
+
+To follow along this tutorial, let's get you setup with the starter notebook, and the model weights and inference script:
+1. Start your Hub Workspace Instance from your [dashboard](https://console.cellstrathub.com/).
+2. Once it starts, download and upload this [Tensorflow Quickstart Notebook](https://cellstrat-public.s3.amazonaws.com/deploy-quickstart/HubAPI-Quickstart_Tensorflow.ipynb) to your Instance.
+3. Run the first cell of the notebook which says `Download Setup Files`. This will download the base code and model weights.
+
+Let's take a look at the files that got downloaded,
+1. `images_ants_bees/` - Contains test images of ants and bees (5 each)
+2. `classifier.py` - The inference code of the model. The `predict()` function in the script handles the prediction from direct API inputs.
+3. `ants_bees_model.h5` - The finetuned tensorflow model
+
+</TabItem>
+</Tabs>
 
 
 ## Step 1: Initialize your HubAPI Project
@@ -63,7 +82,7 @@ ants_bees/
 3. `src/` contains 3 files,
     1. `main.py` - This is the main python file which will be executed whenever our model is invoked after deployment.
     2. `utils.py` - This is a complementary script which contains some basic utility functions that might be useful for our model, like decoding base64 encoded images which is used in this project in the `predict()` function from `classifier.py`
-    3. `requirements.txt` - This file will contain the dependencies / libraries that our project requires. In this case, it would be Pytorch and Torchvision. Numpy and Pillow are preinstalled so no need to specify them unless you want a specific version.
+    3. `requirements.txt` - This file will contain the dependencies / libraries that our project requires.
 
 ## Step 2: Integrate your Inference Code
 
@@ -115,8 +134,11 @@ Now that we have an understanding of the API, we can start integrating our code 
 
 **_Your Action Needed in this Part of the Process_**
 
+<Tabs>
+<TabItem value="pt" label="PyTorch" default>
+
 1. The first thing is to copy the `classifier.py` file to the `ants-bees/src/` directory.
-2. Then we copy the `ants_bees_model.pt` to the `ants-bees/model/` directory.
+2. Then we copy the `ants_bees_weights.pt` to the `ants-bees/model/` directory.
 3. Now we integrate our `predict()` function in `main.py`. To integrate our code in the `main.py`, we just have to add 2 lines of code, 
     1. We import our `predict()` function from the `classifier.py` at the top of the file where `# Add your own import statements` comment is mentioned.
     ```
@@ -135,7 +157,7 @@ values={[
 {label: 'main.py', value: 'main.py'},
 {label: 'requirements.txt', value: 'requirements.txt'},
 ]}>
-<TabItem value="main.py">
+<TabItem value="main.py" label="main.py" default>
 
 ```python
 import json
@@ -159,7 +181,7 @@ def handler(event, context):
 
     # Predict function of your model on the input
     output = predict(inputs)
-   
+
     return {
         'statusCode': 200,
         'body': json.dumps(output)
@@ -168,7 +190,7 @@ def handler(event, context):
 ```
 
 </TabItem>
-<TabItem value="requirements.txt">
+<TabItem value="requirements.txt" label="requirements.txt" >
 
 ```
 torch
@@ -177,6 +199,77 @@ torchvision
 
 </TabItem>
 </Tabs>
+
+</TabItem>
+<TabItem value="tf" label="Tensorflow">
+
+1. The first thing is to copy the `classifier.py` file to the `ants-bees/src/` directory.
+2. Then we copy the `ants_bees_model.h5` to the `ants-bees/model/` directory.
+3. Now we integrate our `predict()` function in `main.py`. To integrate our code in the `main.py`, we just have to add 2 lines of code, 
+    1. We import our `predict()` function from the `classifier.py` at the top of the file where `# Add your own import statements` comment is mentioned.
+    ```
+    from classifier import predict
+    ```
+    2. We apply the imported `predict()` function and return the result to the `output` variable at the 6th last line, where `"YOUR OUTPUT"` is specified.
+    ```
+    output = predict(inputs)
+    ```
+4. We also add `opencv-python` and `tensorflow` in the `requirements.txt` file as these libraries are required for our code to run.
+
+Finally, our `main.py`, and `requirements.txt` should look like this:
+<Tabs
+defaultValue="main.py"
+values={[
+{label: 'main.py', value: 'main.py'},
+{label: 'requirements.txt', value: 'requirements.txt'},
+]}>
+<TabItem value="main.py" label="main.py" default>
+
+```python
+import json
+import os
+# Add your own import statements
+from classifier import predict
+
+def handler(event, context):
+    '''The main function which gets triggered on an API call for an AI model'''
+    # ==================== DO NOT EDIT ====================
+    if event == 'PING':
+        return {
+            'statusCode': 200,
+            'body': json.dumps("PING RESPONSE")
+        }
+    # =====================================================
+    # ++++++++ ADD YOUR INFERENCE CODE HERE ++++++++
+
+    # Access your json encoded string input
+    inputs = json.loads(event['inputs'])
+
+    # Predict function of your model on the input
+    output = predict(inputs)
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps(output)
+    }
+
+```
+
+</TabItem>
+<TabItem value="requirements.txt" label="requirements.txt" >
+
+```
+opencv-python
+tensorflow
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+</Tabs>
+
+
 
 ## Step 3: Build and Deploy your Model
 
@@ -204,10 +297,10 @@ Once the deployment is complete, you can check your deployed model in the [Hub A
 
 ## Testing the API
 
-To test our API we need to first obtain an API Key. In your [Hub API Dashboard](https://console.cellstrathub.com/deployments) you should see an API key already available from where you can copy the key.
+**To test our API we need to first obtain an API Key. In your [Hub API Dashboard](https://console.cellstrathub.com/deployments) you should see an API key already available from where you can copy the key.**
 
 :::tip
-This API key is unique to you and should be kept secure. Leaking this key will result in your monthly API calls being consumed. But luckily, if you notice that your API key is being misused, you can disable it in the dashboard or delete it all together.
+This API key is unique to you and should be kept secure. Leaking this key will result in your monthly API calls being consumed. But luckily, if you notice that your API key is being misused, you can disable it in the dashboard or delete it all together using the edit or delete buttons in the dashboard.
 :::
 
 Once you have the API Key, let's send a POST request to our API using the test images in the `images_ants_bees/` directory which was downloaded earlier.
@@ -247,12 +340,16 @@ payload = {
 
 # Send the POST request
 response = requests.post(HubAPI_URL, headers=headers, data=json.dumps(payload)).json()
-body = json.loads(response['body'])
 
-print('Status Code:', response['statusCode'])
-print('Invocation ID:', body['invocation_id'])
-print('\n=== OUTPUT ===')
-print(body['output'])
+if response.get('body'):
+    # Parse the output
+    body = json.loads(response['body'])
+
+    print('Status Code:', response['statusCode'])
+    print('Invocation ID:', body['invocation_id'])
+    print('\nPredictions:', body['output'])
+else:
+    print(response)
 ```
 ```
 Status Code: 200
