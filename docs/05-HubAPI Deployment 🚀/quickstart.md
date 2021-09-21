@@ -31,7 +31,7 @@ Let's take a look at the files that got downloaded,
 
 ## Step 1: Initialize your HubAPI Project
 
-CellStrat Hub Workspace comes with a command line tool called `hub` which does all of the heavy lifting for deploying your model as an API.
+CellStrat Hub Workspace comes with a command line tool called `hub` which does all of the heavy lifting for deploying your model as an API. To make it simpler, we will be running the commands in the Quickstart Notebook itself which you downloaded earlier.
 
 :::tip
 To get a detailed description of every command in the tool you can run use the `--help` flag. Example, `hub --help`, `hub init --help`, and so on for every command.
@@ -39,7 +39,7 @@ To get a detailed description of every command in the tool you can run use the `
 
 We start by initializing our HubAPI Project for our Ants and Bees Classifier using the `init` command which automatically generates the boilerplate for your deployment package.
 ```
-!hub init ants_bees
+hub init ants_bees
 ```
 Here `ants_bees` is the name of your Project / API. This acts as your identifier of your API that we will be deploying. The project name should only contain alphanumeric characters and hyphens. After running this command we see a `ants_bees/` folder got generated. Let's do a tour of the files and folders that got generated inside `ants_bees/`.
 
@@ -69,7 +69,7 @@ ants_bees/
 
 Now that we have a basic understanding of the generated files and folders, we need to refactor our original inference code from the notebook as a python module/script. But before doing that let's understand the request and response structure of our API.
 
-### Structuring the API
+### Structuring the API (Explanation)
 
 The HubAPI Platform deploys the models as Serverless REST APIs to which the end user can make a POST request. If you don't know what a POST is, then briefly its essentially a method of API request where the user sends some data to the server which synchronously responds to the request by sending some data back to the user. In this case, we will send our images encoded as JSON strings to the deployed API (i.e. server) and our model will respond with the corresponding predictions for each image.
 
@@ -113,11 +113,19 @@ This is essentially everything that you need to know on the Request-Response str
 
 Now that we have an understanding of the API, we can start integrating our code and model in the project.
 
+**_Your Action Needed in this Part of the Process_**
+
 1. The first thing is to copy the `classifier.py` file to the `ants-bees/src/` directory.
 2. Then we copy the `ants_bees_model.pt` to the `ants-bees/model/` directory.
 3. Now we integrate our `predict()` function in `main.py`. To integrate our code in the `main.py`, we just have to add 2 lines of code, 
-    1. `from classifier import predict` - We import our `predict()` function from the `classifier.py` at the top of the file where `# Add your own import statements` comment is mentioned.
-    2. `output = predict(inputs)` - We apply the function and return the result to the `output` variable at the 6th last line, where `"YOUR OUTPUT"` is specified.
+    1. We import our `predict()` function from the `classifier.py` at the top of the file where `# Add your own import statements` comment is mentioned.
+    ```
+    from classifier import predict
+    ```
+    2. We apply the imported `predict()` function and return the result to the `output` variable at the 6th last line, where `"YOUR OUTPUT"` is specified.
+    ```
+    output = predict(inputs)
+    ```
 4. We also add `torch` and `torchvision` in the `requirements.txt` file as these libraries are required for our code to run.
 
 Finally, our `main.py`, and `requirements.txt` should look like this:
@@ -180,7 +188,7 @@ Now we can, go to the final step by building the project and deploying it. To ru
 
 Once we are in the project directory, we can build the project by running the following command:
 ```
-hub build
+hub build -p <PATH TO HubAPI PROJECT>
 ```
 This command builds a docker image of the source code and its dependencies. It also uploads the model weights in the `model` directory to a file system server from where the model will access the weights. The build process can take a few minutes to complete.
 
@@ -190,7 +198,7 @@ The reason the model weights are not included in the docker image is to reduce t
 
 Once the build is complete, we can finally deploy our model,
 ```
-hub deploy
+hub deploy -p <PATH TO HubAPI PROJECT>
 ```
 Once the deployment is complete, you can check your deployed model in the [Hub API Dashboard](https://console.cellstrathub.com/deployments).
 
@@ -203,6 +211,8 @@ This API key is unique to you and should be kept secure. Leaking this key will r
 :::
 
 Once you have the API Key, let's send a POST request to our API using the test images in the `images_ants_bees/` directory which was downloaded earlier.
+
+**DON'T FORGET TO PUT YOUR API KEY IN THE TEST CODE BELOW WHERE IT'S SPECIFIED**
 ```python
 import os
 import json
@@ -272,11 +282,11 @@ But given that, we are also working on the Asynchronous API for batch inference 
 
 ## What's Next?
 
-Congratulations on deploying your first model! Hope you found the process easy and quick. We would love to here your feedback and improve the experience. You can share your feedback [here](https://console.cellstrathub.com/support) and we will respond to your feedback in under 12 hours 🙂.
+Congratulations on deploying your first model! Hope you found the process easy and quick. We would love to here your feedback and improve the experience. You can share your [feedback here](https://forms.gle/zR2fGB2w8FLqf6Ro8) and we will respond to your feedback in under 12 hours 🙂.
 
 But, your journey in deployment doesn't stop here. You can learn more about,
 1. Hub CLI and HubAPI Dashboard (_guide coming soon_)
 2. API Key Management (_guide coming soon_)
-3. [Checkout out Webinars on Everything AI](https://www.meetup.com/Disrupt-4-0/events/s)
+3. [Checkout Webinars on Everything AI](https://www.meetup.com/Disrupt-4-0/events/)
 4. Multi-Model APIs (_guide coming soon_)
 
