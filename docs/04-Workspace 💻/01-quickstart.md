@@ -85,6 +85,4 @@ There is a default timeout of 30 minutes on the free plan and 1 hour on the paid
 
 ## What's Next?
 
-In this quickstart you learnt to navigate around the Workspace and JupyterLab. But there are still a lot of features like different kernels, terminals, git, realtime-collaboration and much more. Be sure to checkout the documentation on all of these features.
-
-- To learn more about the essentials of working in Workspace, checkout the [Workspace Essentials Guide](/Workspace%20💻/essentials).
+In this quickstart you learnt to navigate around the Workspace and JupyterLab. But there are still a lot of features like different kernels, terminals, git, realtime-collaboration and much more. Stay tuned for the documentation to get updated!
