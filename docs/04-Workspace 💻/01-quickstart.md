@@ -11,7 +11,7 @@ Workspace provides you a dedicated virtual machine that is pre-configured with J
 
 <TOCInline toc={toc} />
 
-**_Guides on the New Features and Usage of Hub Workspace Coming Soon. Stay Tuned!_**
+**_Guides on the New Features of Hub Workspace Coming Soon. Stay Tuned!_**
 
 ## Tour of the Dashboard
 
