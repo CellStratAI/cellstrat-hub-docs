@@ -26,7 +26,7 @@ cat ~/.ssh/id_ed25519.pub
 That's it, you are now authenticated with your GitHub account on the Workspace.
 
 :::caution
-After the authentication, please wait for atleast 5 minutes before stopping the workspace if you plan on doing so. This is to ensure your SSH keys are backed up in your persistent storage. This will ensure you remain authenticated across workspace sessions.
+After the authentication, don't stop the workspace immediately, please wait for atleast 5 minutes before stopping the workspace. You can continue doing your work though. This is to ensure your SSH keys are backed up in your persistent storage. This will ensure you remain authenticated across workspace sessions.
 :::
 
 ## Using the Git GUI
