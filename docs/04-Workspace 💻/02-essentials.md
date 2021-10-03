@@ -1,4 +1,4 @@
-# Essentials 💻
+# Essentials 🧰
 
 import TOCInline from '@theme/TOCInline';
 
