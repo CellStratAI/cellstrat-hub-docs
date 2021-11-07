@@ -381,9 +381,10 @@ But given that, we are also working on the Asynchronous API for batch inference 
 
 Congratulations on deploying your first model! Hope you found the process easy and quick. We would love to here your feedback and improve the experience. You can share your [feedback here](https://forms.gle/zR2fGB2w8FLqf6Ro8) and we will respond to your feedback in under 12 hours 🙂.
 
-But, your journey in deployment doesn't stop here. You can learn more about,
-1. Hub CLI and HubAPI Dashboard (_guide coming soon_)
-2. API Key Management (_guide coming soon_)
-3. [Checkout Webinars on Everything AI](https://www.meetup.com/Disrupt-4-0/events/)
-4. Multi-Model APIs (_guide coming soon_)
+But, your journey in deployment doesn't stop here. You can learn more here,
+- [CellStrat Workshop on Detection Transformer - Development & Deployment](https://www.youtube.com/watch?v=XQCeKfMoEqc)
+- Hub CLI and HubAPI Dashboard (_guide coming soon_)
+- API Key Management (_guide coming soon_)
+- [Checkout Webinars on Everything AI](https://www.meetup.com/Disrupt-4-0/events/)
+- Multi-Model APIs (_guide coming soon_)
 
