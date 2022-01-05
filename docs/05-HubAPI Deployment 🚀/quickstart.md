@@ -10,7 +10,9 @@ import TabItem from '@theme/TabItem';
 
 Hub API is an Intuitive Deployment Platform for Serving AI Models as REST APIs. Get started with deploying your first model as an API in this hands-on guide. You will be deploying an Ants and Bees Image Classification Model in this Tutorial. This tutorial covers the deployment in both PyTorch and Tensorflow/Keras.
 
-### Deprecation Notice: This quickstart is deprecated and will be updated very soon with Hub CLI 0.5. Sorry for the inconvenience!
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DsruvxMAULU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Deprecation Notice: The quickstart below is deprecated and will be updated very soon with Hub CLI 0.5. Sorry for the inconvenience!
 
 <TOCInline toc={toc} />
 
