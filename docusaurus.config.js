@@ -50,12 +50,16 @@ module.exports = {
           title: "Community",
           items: [
             {
+              label: "Discord",
+              href: "https://discord.gg/mWJzjyVfC9",
+            },
+            {
               label: "LinkedIn",
               href: "https://www.linkedin.com/company/cellstrat/",
             },
             {
-              label: "Discord",
-              href: "https://discord.gg/mWJzjyVfC9",
+              label: "Instagram",
+              href: "https://instagram.com/cellstrat",
             },
             {
               label: "Twitter",
