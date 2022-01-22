@@ -168,22 +168,32 @@ Now the only thing left is to just build our deployment package and deploy it.
 
 ### Build and Deploy the Model
 
-We can now build our Inference API package using the `hub build` command. This command will upload the model files to our model storage servers and build the Docker image of our source code and dependencies locally. This can take about 1-2 minutes.
+We can now build our Inference API package using the `hub build` command. This command will upload the model files to our model storage servers and build the Docker image of our source code and dependencies locally. Once everything is built and ready, we can now deploy our API by pushing everything to the cloud using the `hub deploy` command. This can take 3-4 minutes to complete overall.
 
 ```bash
 cd sentiment-analyser
 hub build
+hub deploy
 ```
 
 :::info
 The `build` and `deploy` commands need to be run from the directory where the project is located. That is why we ran `cd sentiment-analyser` above.
 :::
 
-Once everything is built and ready, we can now deploy our API by pushing everything to the cloud using the `hub deploy` command. This can again take 1-2 minutes.
+:::tip
+You can build and deploy together in a single command by running
 
 ```bash
-hub deploy
+hub build --deploy
 ```
+
+or
+
+```bash
+hub build -d
+```
+
+:::
 
 And there you go, your API is now live and accessible on the internet. But wait, we don't want our API to fully public as we need to have some control over who uses it and how much is used. To control just that, every API can only be invoked using a API key. In the next and also the last section of this guide, we will test our deployed model API using our API key.
 
