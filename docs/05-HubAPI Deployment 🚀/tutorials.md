@@ -10,6 +10,14 @@ This page contains the recordings of all the workshops conducted on deployment u
 
 <TOCInline toc={toc} />
 
-## Deploying a Vision Model (CLIP) using Hub API
+## Deploying a Vision Model (CLIP)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/DsruvxMAULU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Deploying a Question Answering Model
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2DOwEskf348" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Developing and Deploying a Sentiment Analysis Model
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/iET-k6zeBf8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
