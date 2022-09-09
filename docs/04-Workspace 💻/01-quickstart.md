@@ -4,7 +4,7 @@ import TOCInline from '@theme/TOCInline';
 
 CellStrat Hub Workspace is a simple yet powerful development environment for rapid AI development based on JupyterLab. Get started with Workspace in just a few minutes
 
-1. Sign Up for a free account on CellStrat Hub [here](https://cellstrathub.com/sign-up)
+1. Sign Up for a free account on CellStrat Hub [here](https://cellstrathub.com/request-access)
 2. Once your account is created and verified, login to CellStrat Hub Console [here](https://console.cellstrathub.com/)
 
 Workspace provides you a dedicated virtual machine that is pre-configured with Jupyter Lab and all major python libraries for Data Science, Machine Learning and Deep Learning with persistent storage unlike other notebook based platforms.

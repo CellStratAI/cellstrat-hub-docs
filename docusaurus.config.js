@@ -18,7 +18,7 @@ module.exports = {
       },
       items: [
         {
-          to: "https://cellstrathub.com/sign-up",
+          to: "https://cellstrathub.com/request-access",
           label: "Sign Up",
           position: "left",
         },
